@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<37]
+  skip: True  # [py<36]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
@@ -35,7 +35,7 @@ test:
     - pip check
 
 about:
-  home: http://github.com/mthh/jenkspy
+  home: https://github.com/mthh/jenkspy
   license: MIT
   license_family: MIT
   license_file: LICENSE
