@@ -11,36 +11,38 @@ source:
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: True  # [py<36]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
     - numpy
 
 test:
+  imports:
+    - jenkspy
   requires:
     - pip
   commands:
     - pip check
-  imports:
-    - jenkspy
 
 about:
-  home: http://github.com/mthh/jenkspy
+  home: https://github.com/mthh/jenkspy
   license: MIT
   license_family: MIT
   license_file: LICENSE
   summary: Compute Natural Breaks (Fisher-Jenks algorithm)
   description: Compute natural breaks (Fisher-Jenks algorithm) on list/tuple/array/numpy.ndarray of integers/floats.
   dev_url: https://github.com/mthh/jenkspy
+  doc_url: https://github.com/mthh/jenkspy
 
 extra:
   recipe-maintainers:
